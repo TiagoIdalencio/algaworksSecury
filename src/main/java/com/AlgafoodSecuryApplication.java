@@ -9,7 +9,7 @@ import com.algafood.infrastructure.repository.CustomJpaRepositoryImpl;
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class) 
-public class AlgafoodSecuryApplication {
+public class AlgafoodSecuryApplication { 
 
 	public static void main(String[] args) {
 		 SpringApplication.run(AlgafoodSecuryApplication.class, args);
