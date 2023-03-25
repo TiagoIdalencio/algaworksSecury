@@ -44,7 +44,7 @@ public class CidadeController {
 	}
 
 	@GetMapping("/{cidadeId}")
-public Cidade buscar(@PathVariable Long cidadeId) {
+	public Cidade buscar(@PathVariable Long cidadeId) {
 		return cadastroCidade.buscarOuFalhar(cidadeId);
 	}
 
