@@ -18,9 +18,9 @@ public class CadastroUsuarioService {
 	private PasswordEncoder passwordEncoder;
 	
 	public Usuario salvar(Usuario usuario) {	
-		Usuario usuarioVelho = buscarOuFalhar(usuario.getId());
+		Usuario usuarioVelho = buscarOuFalhar(usuario.getEmail());
 		
-		if (!passwordEncoder.matches(usuarioVelho.getSenha(), usuario.getSenha())) {
+		if (usuarioVelho!=null && !passwordEncoder.matches(usuarioVelho.getSenha(), usuario.getSenha())) {
 	        throw new NegocioException("Senha atual informada não coincide com a senha do usuário.");
 	    }
 		
@@ -32,6 +32,14 @@ public class CadastroUsuarioService {
 	public Usuario buscarOuFalhar(Long usuarioId) {
 		try {
 			return usuarioRepository.findById(usuarioId).get();
+		} catch (Exception ex) {		
+			return null;
+		}
+	}
+	
+	public Usuario buscarOuFalhar(String usuarioEmail) {
+		try {
+			return usuarioRepository.findByEmail(usuarioEmail).get();
 		} catch (Exception ex) {		
 			return null;
 		}
