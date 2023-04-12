@@ -31,7 +31,7 @@ insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) val
 
 insert into grupo (id,nome) values (1, 'Gerente'), (2, 'Vendedor'), (3, 'Secretária'), (4, 'Cadastro');
 
-insert into grupo_permissao (grupo_id, permissao_id) values (1,1), (1,2), (2,2)
+insert into grupo_permissao (grupo_id, permissao_id) values (1,1), (1,2), (2,2);
 
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Porco com molho agridoce', 'Deliciosa carne suína ao molho especial', 78.90, 1, 1);
 insert into produto (nome, descricao, preco, ativo, restaurante_id) values ('Camarão tailandês', '16 camarões grandes ao molho picante', 110, 1, 1);
