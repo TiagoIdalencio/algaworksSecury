@@ -33,33 +33,33 @@ public class CozinhaController {
 	@Autowired
 	private CadastroCozinhaService cadastroCozinha;
 
-	@CheckSecurity.Cozinha.PodeConsultar
+	@CheckSecurity.Cozinhas.PodeConsultar
 	@GetMapping
 	public List<Cozinha> listar() {
 		return cozinhaRepository.findAll();
 	}
 
-	@CheckSecurity.Cozinha.PodeConsultar
+	@CheckSecurity.Cozinhas.PodeConsultar
 	@GetMapping("/{cozinhaId}")
 	public Cozinha buscar(@PathVariable Long cozinhaId) {
 		return cadastroCozinha.buscarOuFalhar(cozinhaId);
 	}
 
-	@CheckSecurity.Cozinha.PodeConsultar
+	@CheckSecurity.Cozinhas.PodeConsultar
 	@GetMapping("/por-nome")
 	public List<Cozinha> cozinhaNome(String nome) {
 		return cozinhaRepository.findTodasByNomeContaining(nome);
 
 	}
 
-	@CheckSecurity.Cozinha.PodeEditar
+	@CheckSecurity.Cozinhas.PodeEditar
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cozinha adicionar(@RequestBody @Valid Cozinha cozinha) {
 		return cozinhaRepository.save(cozinha);
 	}
 
-	@CheckSecurity.Cozinha.PodeEditar
+	@CheckSecurity.Cozinhas.PodeEditar
 	@PutMapping("/{cozinhaId}")
 	public Cozinha atualizar(@PathVariable Long cozinhaId, @RequestBody @Valid Cozinha cozinha) {
 		Cozinha cozinhaAtual = cadastroCozinha.buscarOuFalhar(cozinhaId);
@@ -69,7 +69,7 @@ public class CozinhaController {
 		return cadastroCozinha.salvar(cozinhaAtual);
 	}
 
-	@CheckSecurity.Cozinha.PodeEditar
+	@CheckSecurity.Cozinhas.PodeEditar
 	@DeleteMapping("/{cozinhaId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long cozinhaId) {

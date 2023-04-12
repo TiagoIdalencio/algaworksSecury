@@ -18,5 +18,9 @@ public class AlgaSecurity {
 		
 		return jwt.getClaim("usuario_id");
 	}
+	
+	public boolean getUsuarioOk(Long id) {
+		return id == 1l?true:false;
+	}
 
 }
