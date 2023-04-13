@@ -4,8 +4,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
 
+import org.hibernate.annotations.Any;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,14 +27,17 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		.formLogin()
+			.loginPage("/login")
+//			.loginProcessingUrl("/process-login")
+//			.defaultSuccessUrl("/home")
+//			.failureUrl("/login?error")
+			.permitAll()
+		.and()
+		.authorizeRequests()
+			.antMatchers("/oauth/**").authenticated()
+		.and()		
 		.csrf().disable()
-//		.authorizeRequests()
-//			.antMatchers(HttpMethod.POST, "/cozinhas/**").hasAuthority("EDITAR_COZINHAS")
-//			.antMatchers(HttpMethod.PUT, "/cozinhas/**").hasAuthority("EDITAR_COZINHAS")
-//			.antMatchers(HttpMethod.DELETE, "/cozinhas/**").hasAuthority("EDITAR_COZINHAS")
-//			.antMatchers(HttpMethod.GET, "/cozinhas/**").authenticated()
-//			.anyRequest().denyAll()
-//		.and()
 		.cors().and()
 		.oauth2ResourceServer().jwt()
 			.jwtAuthenticationConverter(jwtAuthenticationConverter());
@@ -58,6 +64,12 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 		});
 		
 		return jwtAuthenticationConverter;
+	}
+	
+	@Bean
+	@Override
+	protected AuthenticationManager authenticationManager() throws Exception {
+		return super.authenticationManager();
 	}
 	
 }
