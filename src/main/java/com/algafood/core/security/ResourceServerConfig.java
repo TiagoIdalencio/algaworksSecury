@@ -28,11 +28,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.formLogin()
-			.loginPage("/login")
-//			.loginProcessingUrl("/process-login")
-//			.defaultSuccessUrl("/home")
-//			.failureUrl("/login?error")
-			.permitAll()
+			.loginPage("/login").permitAll()			
 		.and()
 		.authorizeRequests()
 			.antMatchers("/oauth/**").authenticated()
