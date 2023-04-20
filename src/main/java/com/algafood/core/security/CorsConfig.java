@@ -1,4 +1,4 @@
-package com.algafood.core.security.authorizationServer;
+package com.algafood.core.security;
 
 import java.util.Collections;
 
