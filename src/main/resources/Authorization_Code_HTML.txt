@@ -1,0 +1,2 @@
+
+http://localhost:8090/oauth/authorize?response_type=code&state=abc&client_id=foodanalytics

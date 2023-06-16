@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class SecurityController {
 
-	@GetMapping("/entrar")
+	@GetMapping("/login")
 	public String login() {
-		return "pages/entrar";
+		return "pages/login";
 	}
-
-	@PostMapping("/perm")
-	public String perm() {
-		return "";
+	
+	@GetMapping("/oauth/confirm_access")
+	public String approval() {
+		return "pages/approval";
 	}
 	
 }
