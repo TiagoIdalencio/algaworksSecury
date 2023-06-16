@@ -9,42 +9,23 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 @Validated
 @Component
 @ConfigurationProperties("algafood.jwt.keystore")
 public class JwtKeyStoreProperties {
 
 	@NotNull
-	private Resource path;
+	private Resource jksLocation;
 	
 	@NotBlank
 	private String password;
 	
 	@NotBlank
 	private String keypairAlias;
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getKeypairAlias() {
-		return keypairAlias;
-	}
-
-	public void setKeypairAlias(String keypairAlias) {
-		this.keypairAlias = keypairAlias;
-	}
-
-	public Resource getPath() {
-		return path;
-	}
-
-	public void setPath(Resource path) {
-		this.path = path;
-	}
 
 }

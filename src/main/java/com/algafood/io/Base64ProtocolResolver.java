@@ -13,9 +13,9 @@ public class Base64ProtocolResolver implements ProtocolResolver,
 	ApplicationListener<ApplicationContextInitializedEvent> {
 	
 	@Override
-	public Resource resolve(String path, ResourceLoader resourceLoader) {
-		if (path.startsWith("base64:")) {
-			byte[] decodedResource = Base64.getDecoder().decode(path.substring(7));
+	public Resource resolve(String location, ResourceLoader resourceLoader) {
+		if (location.startsWith("base64:")) {
+			byte[] decodedResource = Base64.getDecoder().decode(location.substring(7));
 			return  new ByteArrayResource(decodedResource);
 		}
 		return null;
@@ -23,7 +23,7 @@ public class Base64ProtocolResolver implements ProtocolResolver,
 
 	@Override
 	public void onApplicationEvent(ApplicationContextInitializedEvent event) {
-		event.getApplicationContext().addApplicationListener(this);
+		event.getApplicationContext().addProtocolResolver(this);
 	}
 
 }
